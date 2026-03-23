@@ -69,7 +69,7 @@ img {
 
 
 .auto-evaluation {
-    background-color: #f8fbfb; /
+    background-color: #f8fbfb;
     border: 1px solid #e1e8ed;
     padding: 30px;
     border-radius: 8px;
@@ -171,3 +171,15 @@ footer {
 .skip-link{position:absolute;left:-999px;}
 .skip-link:focus{left:10px;top:10px;}
 a:focus{outline:3px solid #18bc9c;outline-offset:2px;}
+
+/* Style pour citations */
+blockquote {
+    border-left: 4px solid #18bc9c;
+    padding-left: 15px;
+    font-style: italic;
+    color: #555555;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 4px;
+    margin: 20px 0;
+}
