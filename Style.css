@@ -109,7 +109,7 @@ form label {
     transition: all 0.3s ease; 
 }
 
-/* Effets au survol d'une réponse */
+/* Effets réponse */
 form label:hover {
     background-color: #eaf8f5;
     border-color: #18bc9c;
@@ -124,7 +124,7 @@ form input[type="radio"] {
     cursor: pointer;
 }
 
-/* Styles pour les boutons d'action */
+/* Styles butons d'action */
 form button {
     background-color: #18bc9c;
     color: #ffffff;
