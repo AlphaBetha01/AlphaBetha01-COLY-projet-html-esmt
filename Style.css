@@ -1,4 +1,4 @@
-/* Mes paramètres globaux*/
+/* Mes paramètres globaux */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
@@ -16,6 +16,7 @@ header {
     text-align: center;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
+
 header h1 {
     margin: 0 0 15px 0;
     font-size: 2em;
@@ -43,6 +44,13 @@ nav a:hover {
     text-decoration: underline;
 }
 
+/*Style de la page active (Violet) */
+nav a[aria-current="page"] {
+    color: #9b59b6; 
+    text-decoration: underline; 
+}
+
+
 /* Mon contenu principal */
 main {
     max-width: 900px;
@@ -66,7 +74,6 @@ img {
     display: block;
     margin: 20px auto;
 }
-
 
 .auto-evaluation {
     background-color: #f8fbfb;
@@ -124,7 +131,7 @@ form input[type="radio"] {
     cursor: pointer;
 }
 
-/* Styles butons d'action */
+/* Styles boutons d'action */
 form button {
     background-color: #18bc9c;
     color: #ffffff;
@@ -139,7 +146,7 @@ form button {
     box-shadow: 0 4px 6px rgba(24, 188, 156, 0.2);
 }
 
-/* Effets  */
+/* Effets */
 form button:hover {
     background-color: #128f76; 
     transform: translateY(-2px); 
