@@ -8,7 +8,6 @@
 </head>
 <body>
   <a class="skip-link" href="#main">Aller au contenu</a>
-
   <header>
     <h1>Manifeste sur la Médiation et la Gestion des Conflits</h1>
     <nav>
@@ -21,7 +20,6 @@
       </ul>
     </nav>
   </header>
-
   <main id="main">
     <h2>Le processus de médiation</h2>
 
@@ -32,14 +30,13 @@
         Elle repose sur la coopération volontaire et la confidentialité. Le médiateur n’impose pas de décision ; il facilite le dialogue.
       </p>
     </section>
-
     <section class="auto-evaluation">
       <h3>Étape préliminaire : Outils d'auto-évaluation</h3>
       <p>Avant d'entamer le processus formel, prenez quelques minutes pour analyser votre propre fonctionnement grâce à ces deux outils interactifs.</p>
 
       <article id="test-thomas-kilmann">
         <h4>Test : Quel est votre style face au conflit ? (Modèle Thomas-Kilmann)</h4>
-        <form action="#" method="get">
+        <form action="#" method="get" id="form-style">
           <fieldset>
             <legend>Question 1 : Lors d'un désaccord profond, mon premier réflexe est de...</legend>
             <label><input type="radio" name="q1" value="competition"> Chercher à imposer mes arguments à tout prix (Compétition)</label>
@@ -48,32 +45,35 @@
             <label><input type="radio" name="q1" value="evitement"> Changer de sujet ou repousser la discussion (Évitement)</label>
             <label><input type="radio" name="q1" value="accommodement"> Céder pour préserver la relation (Accommodement)</label>
           </fieldset>
-          <button type="button">Découvrir mon style</button>
+          <button type="button" id="btn-style">Découvrir mon style</button>
+          <div id="result-style" style="margin-top: 15px; padding: 15px; border-radius: 5px; display: none; background-color: #eaf8f5; border-left: 4px solid #18bc9c;"></div>
         </form>
       </article>
-
-      <article id="evaluation-communication">
+      <article id="test-communication">
         <h4>Questionnaire d'évaluation de la qualité de la communication interpersonnelle</h4>
-        <form action="#" method="get">
+        <form action="#" method="get" id="form-com">
           <fieldset>
             <legend>Évaluez vos habitudes lors d'une discussion tendue :</legend>
             
             <p><strong>1. J'écoute mon interlocuteur jusqu'au bout sans l'interrompre.</strong></p>
-            <label><input type="radio" name="com1" value="toujours"> Toujours</label>
-            <label><input type="radio" name="com1" value="souvent"> Souvent</label>
-            <label><input type="radio" name="com1" value="parfois"> Parfois</label>
-            <label><input type="radio" name="com1" value="jamais"> Jamais</label>
+            <label><input type="radio" name="com1" value="3"> Toujours</label>
+            <label><input type="radio" name="com1" value="2"> Souvent</label>
+            <label><input type="radio" name="com1" value="1"> Parfois</label>
+            <label><input type="radio" name="com1" value="0"> Jamais</label>
 
             <p><strong>2. J'utilise le "JE" pour exprimer mes émotions plutôt que d'accuser avec le "TU".</strong></p>
-            <label><input type="radio" name="com2" value="toujours"> Toujours</label>
-            <label><input type="radio" name="com2" value="souvent"> Souvent</label>
-            <label><input type="radio" name="com2" value="parfois"> Parfois</label>
-            <label><input type="radio" name="com2" value="jamais"> Jamais</label>
+            <label><input type="radio" name="com2" value="3"> Toujours</label>
+            <label><input type="radio" name="com2" value="2"> Souvent</label>
+            <label><input type="radio" name="com2" value="1"> Parfois</label>
+            <label><input type="radio" name="com2" value="0"> Jamais</label>
           </fieldset>
-          <button type="button">Évaluer ma communication</button>
+          <button type="button" id="btn-com">Évaluer ma communication</button>
+          
+          <div id="result-com" style="margin-top: 15px; padding: 15px; border-radius: 5px; display: none; background-color: #eaf8f5; border-left: 4px solid #18bc9c;"></div>
         </form>
       </article>
     </section>
+
     <section>
       <h3>1. Préparation</h3>
       <p>
@@ -126,5 +126,84 @@
   <footer>
     <p>Projet HTML/CSS IGIT1 - ESMT</p>
   </footer>
+
+  <script>
+    // (Style de conflit)
+    document.getElementById('btn-style').addEventListener('click', function() {
+      const resultDiv = document.getElementById('result-style');
+      const selectedOption = document.querySelector('input[name="q1"]:checked');
+
+      if (!selectedOption) {
+        resultDiv.style.display = 'block';
+        resultDiv.style.borderLeftColor = '#e74c3c'; 
+        resultDiv.style.backgroundColor = '#fdedec';
+        resultDiv.innerHTML = "⚠️ Veuillez sélectionner une réponse pour découvrir votre style.";
+        return;
+      }
+
+      let titre = "";
+      let description = "";
+
+      switch (selectedOption.value) {
+        case 'competition':
+          titre = "Style Compétitif";
+          description = "Vous défendez fermement vos positions. Utile dans l'urgence, mais attention à ne pas écraser l'autre partie.";
+          break;
+        case 'collaboration':
+          titre = "Style Collaboratif";
+          description = "Vous cherchez la solution gagnant-gagnant. Excellent pour des accords durables, bien que cela demande du temps.";
+          break;
+        case 'compromis':
+          titre = "Style Compromis";
+          description = "Vous cherchez le juste milieu rapidement. Efficace, mais parfois frustrant si les problèmes de fond ne sont pas réglés.";
+          break;
+        case 'evitement':
+          titre = "Style Évitement";
+          description = "Vous préférez ne pas affronter le conflit. Utile pour faire retomber la pression, mais attention à ne pas laisser pourrir la situation.";
+          break;
+        case 'accommodement':
+          titre = "Style Accommodant";
+          description = "Vous privilégiez la relation au détriment de vos propres intérêts. Généreux, mais attention à la rancœur sur le long terme.";
+          break;
+      }
+
+      resultDiv.style.display = 'block';
+      resultDiv.style.borderLeftColor = '#18bc9c';
+      resultDiv.style.backgroundColor = '#eaf8f5';
+      resultDiv.innerHTML = "<strong>Résultat : " + titre + "</strong><br>" + description;
+    });
+
+    // (Communication)
+    document.getElementById('btn-com').addEventListener('click', function() {
+      const resultDiv = document.getElementById('result-com');
+      const q1 = document.querySelector('input[name="com1"]:checked');
+      const q2 = document.querySelector('input[name="com2"]:checked');
+
+      if (!q1 || !q2) {
+        resultDiv.style.display = 'block';
+        resultDiv.style.borderLeftColor = '#e74c3c';
+        resultDiv.style.backgroundColor = '#fdedec';
+        resultDiv.innerHTML = "⚠️ Veuillez répondre aux deux questions pour obtenir votre évaluation.";
+        return;
+      }
+
+      // score (valeurs dans le HTML vont de  3, 2, 1, à 0)
+      const score = parseInt(q1.value) + parseInt(q2.value);
+      let analyse = "";
+
+      if (score >= 5) {
+        analyse = "Excellente base ! Vous maîtrisez les principes de l'écoute active et de la communication non violente.";
+      } else if (score >= 3) {
+        analyse = "Bonne communication globale, mais perfectible en situation de stress. Essayez de vous concentrer davantage sur vos ressentis (le 'JE').";
+      } else {
+        analyse = "Attention, vos automatismes risquent d'envenimer les conflits. La médiation vous sera très utile pour réapprendre à dialoguer sereinement.";
+      }
+
+      resultDiv.style.display = 'block';
+      resultDiv.style.borderLeftColor = '#18bc9c';
+      resultDiv.style.backgroundColor = '#eaf8f5';
+      resultDiv.innerHTML = "<strong>Votre score : " + score + " / 6</strong><br>" + analyse;
+    });
+  </script>
 </body>
 </html>
